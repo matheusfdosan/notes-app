@@ -2,7 +2,15 @@
 
 Um site para fazer anotações
 
-🛠 Ainda em construção... 
+## 🛠 Ainda em construção:
+- Editar as notas
+- Tecla Esc, para cancelar a nota
+- Excluir nota
+- Página Contat
+- Página FAQ
+
+- Página Contat
+Mas enquanto estes estão em construção, você pode acessar o site [aqui](https://matheusfdosan.github.io/notes-app/)
 
 # Techs 
 
