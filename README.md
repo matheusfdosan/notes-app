@@ -6,20 +6,19 @@ Um site para fazer anotações
 - Editar as notas
 - Tecla Esc, para cancelar a nota
 - Excluir nota
-- Página Contat
+- Página Contact
 - Página FAQ
-- Página Contat
 
 Mas enquanto estes estão em construção, você pode acessar o site [aqui](https://matheusfdosan.github.io/notes-app/)
 
-# Techs 
+## 🚀 Techs 
 
 - HTML5 
 - CSS3
 - JavaScript 
 - [DOM](https://developer.mozilla.org/pt-BR/docs/Web/API/Document_Object_Model/Introduction)
 
-# Contact
+## Contact
 
 - Acesse meus outros repositórios no [Github](https://github.com/matheusfdosan/)
 - Também me siga no [Instagram](https://instagram.com/matheusfdosan/)
