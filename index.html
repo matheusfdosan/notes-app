@@ -1,41 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="./style.css" />
-    <title>To do list</title>
-  </head>
-  <body>
-    <header>
-      <h1>Notes</h1>
-      
-      <nav>
-        <ul>
-          <li class="home"><a href="./index.html">Home</a></li>
-          <li class="contact"><a href="./contact.html">Contact</a></li>
-          <li class="faq"><a href="./faq.html">FAQ</a></li>
-        </ul>
-      </nav>
-    </header>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <main>
-      <h2>Your Notes</h2>
+		<link rel="stylesheet" href="style.css" />
 
-      <div class="notes-container">
-        <div class="create-new-note">+</div>
-      </div>
-    </main>
+		<link rel="shortcut icon" href="images/logo.svg" type="image/x-icon" />
 
-    <footer>
-      By
-      <a href="https://github.com/matheusfdosan/" target="_blank"
-        >Matheus Faustino</a
-      >
-    </footer>
+		<title>Just Do Notes</title>
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<img src="images/slogan.svg" alt="slogan" />
 
-    <script src="./script.js"></script>
-  </body>
+				<div class="menu-section">
+					<nav>
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Contact</a></li>
+							<li><a href="#">FAQ</a></li>
+							<li>
+								<div class="create-note">
+									<button class="new-note">Create Note</button>
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+
+		<main>
+			<div class="main-notes">
+				<h2>Your Notes</h2>
+
+				<div class="my-notes">
+					<div class="notes for-cloning">
+						<h3></h3>
+						<p></p>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<div class="modal-overlay initial">
+			<div class="modal">
+				<a class="close-modal">
+					<img
+						src="images/fi-rr-cross.svg"
+						alt="cross"
+					/>
+				</a>
+				<form method="dialog" class="modal-content">
+					<input type="text" class="notes-title" placeholder="Title" />
+
+					<textarea
+						name="notes-content"
+						class="notes-content"
+						placeholder="Write here..."
+					></textarea>
+
+					<button type="submit" class="done-btn">Done</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="modal-overlay edit">
+			<div class="modal">
+				<a class="close-modal">
+					<img
+						src="images/fi-rr-cross.svg"
+						alt="cross"
+					/>
+				</a>
+
+				<form method="post" class="modal-content edit-form">
+					<input type="text" class="notes-title" placeholder="Title" />
+
+					<textarea
+						name="notes-content"
+						class="notes-content"
+						placeholder="Write here..."
+					></textarea>
+
+					<div class="update-and-delete-btn">
+						<button type="submit" class="update-btn">Update</button>
+						<button class="delete-btn">Delete</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script src="script.js"></script>
+	</body>
 </html>

@@ -1,68 +1,113 @@
-const notesContainer = document.querySelector(".notes-container")
-const createNewNoteBtn = document.querySelector(".create-new-note")
+const newNoteBtn = document.querySelector(".create-note")
 
-createNewNoteBtn.onclick = () => {
-  // criar a nota no container de notas
-  const newNote = document.createElement("div")
-  newNote.classList.add("new-note")
-  notesContainer.append(newNote)
+const modalOverlay = document.querySelector(".initial")
+const modal = document.querySelector(".initial .modal")
 
-  // mostrar uma janela
-  const newWindow = document.createElement("div")
-  newWindow.classList.add("note-window")
+const notesContainer = document.querySelector(".my-notes")
 
-  const body = document.body
-  body.append(newWindow)
-  // body.classList.add("window-active")
+newNoteBtn.addEventListener("click", () => {
+	modalOverlay.classList.add("active")
+	modal.classList.add("active")
+	document.querySelector("body").style.overflow = "hidden"
 
-  // um área para colocar o título
-  const title = document.createElement("input")
-  title.classList.add("title-note")
-  title.placeholder = "Title"
-  title.style.color = "#000"
+	document.querySelector(".close-modal").addEventListener("click", () => {
+		modalOverlay.classList.remove("active")
+		modal.classList.remove("active")
+		document.querySelector("body").style.overflow = "initial"
+	})
+})
 
-  // um área para colocar o texto
-  const textArea = document.createElement("textarea")
-  textArea.classList.add("text-area")
-  textArea.placeholder = "Create a note..."
+document.querySelector(".modal-content").addEventListener("submit", (event) => {
+	event.preventDefault()
 
-  // botão para enviar
-  const sendBtn = document.createElement("button")
-  sendBtn.classList.add("send-button")
-  sendBtn.textContent = "Send"
+	const title = event.submitter.parentElement[0].value
+	const content = event.submitter.parentElement[1].value
 
-  // botão para cancelar
-  const cancelBtn = document.createElement("button")
-  cancelBtn.classList.add("cancel-button")
-  cancelBtn.textContent = "Cancel"
+	if (title.length === 0 && content.length === 0) {
+		modalOverlay.classList.remove("active")
+		modal.classList.remove("active")
+		document.querySelector("body").style.overflow = "initial"
+	} else {
+		const noteClone = document.querySelector(".for-cloning").cloneNode(true)
 
-  // colocar o título, texto, botão de enviar e de cancelar, dentro da janela
-  newWindow.append(title, textArea, sendBtn, cancelBtn)
+		noteClone.firstElementChild.textContent = title
+		noteClone.lastElementChild.textContent = content
+		noteClone.classList.remove("for-cloning")
+		noteClone.style.display = "flex"
 
-  // quando o botão de enviar for clicado, ele mandara desaparecer a janela para escrever a nota, e adicionará o texto e o titulo na nota que fica no container de notas
-  sendBtn.onclick = () => {
-    // Se nada estiver escrito no título e na área de texto, a anotação vai ser removida do container
-    if (title.value.length == 0 && textArea.value.length == 0) {
-      title.parentNode.removeChild(title)
-      textArea.parentNode.removeChild(textArea)
-      sendBtn.parentNode.removeChild(sendBtn)
-      cancelBtn.parentNode.removeChild(cancelBtn)
-      newWindow.parentNode.removeChild(newWindow)
-      newNote.parentNode.removeChild(newNote)
-    } else {
-      newWindow.style.display = "none"
-      newNote.innerHTML = `
-      <h4>${title.value}</h4>
-      <p>${textArea.value}</p>`
-    }
-  }
+		notesContainer.appendChild(noteClone)
 
-  cancelBtn.onclick = () => {
-    title.parentNode.removeChild(title)
-    textArea.parentNode.removeChild(textArea)
-    sendBtn.parentNode.removeChild(sendBtn)
-    cancelBtn.parentNode.removeChild(cancelBtn)
-    newWindow.parentNode.removeChild(newWindow)
-    newNote.parentNode.removeChild(newNote)
-  }
-}
+		modalOverlay.classList.remove("active")
+		modal.classList.remove("active")
+		document.querySelector("body").style.overflow = "initial"
+
+		event.target.reset()
+	}
+})
+
+const modalOverlayEdit = document.querySelector(".edit")
+const modalEdit = document.querySelector(".edit > .modal")
+const note = [...document.querySelectorAll(".my-notes, .notes")]
+
+note.forEach((note) => {
+	note.addEventListener("click", (event) => {
+		const mainElement = event.target
+
+		modalOverlayEdit.classList.add("active")
+		modalEdit.classList.add("active")
+		document.querySelector("body").style.overflow = "hidden"
+
+		document
+			.querySelector(".edit > .modal > .close-modal")
+			.addEventListener("click", () => {
+				modalOverlayEdit.classList.remove("active")
+				modalEdit.classList.remove("active")
+				document.querySelector("body").style.overflow = "initial"
+			})
+
+		const inputTitle = document.querySelector(".edit-form input")
+		const textAreaContent = document.querySelector(".edit-form textarea")
+
+		const h3Value = event.target.firstChild.textContent
+		const paragraphValue = event.target.lastChild.textContent
+
+		inputTitle.value = h3Value
+		textAreaContent.value = paragraphValue
+
+		const h3Element = event.target.firstChild
+		const pElement = event.target.lastChild
+
+		document.querySelector(".edit-form").addEventListener("submit", (event) => {
+			event.preventDefault()
+
+			const title = event.target[0].value
+			const content = event.target[1].value
+
+			if (title.length === 0 && content.length === 0) {
+				modalOverlayEdit.classList.remove("active")
+				modalEdit.classList.remove("active")
+				document.querySelector("body").style.overflow = "initial"
+			} else {
+				h3Element.textContent = title
+				pElement.textContent = content
+
+				modalOverlayEdit.classList.remove("active")
+				modalEdit.classList.remove("active")
+				document.querySelector("body").style.overflow = "initial"
+			}
+		})
+
+		document.querySelector(".delete-btn").addEventListener("click", (event) => {
+			mainElement.remove()
+
+			modalOverlayEdit.classList.remove("active")
+			modalEdit.classList.remove("active")
+			document.querySelector("body").style.overflow = "initial"
+		})
+	})
+})
+
+/* 
+  Erros:
+    - Update e delete, não funcionam as vezes.
+*/
