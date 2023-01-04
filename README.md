@@ -8,6 +8,7 @@ Simplesmente, um site para fazer anotações.
 - Excluir nota
 - Página Contact
 - Página FAQ
+- Media Queries
 
 Mas enquanto estes estão em construção, você pode acessar o site [aqui](https://matheusfdosan.github.io/just-do-notes/)
 
