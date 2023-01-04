@@ -10,7 +10,7 @@ Simplesmente, um site para fazer anotações.
 - Página Contact
 - Página FAQ
 
-Mas enquanto estes estão em construção, você pode acessar o site [aqui](https://matheusfdosan.github.io/notes-app/)
+Mas enquanto estes estão em construção, você pode acessar o site [aqui](https://matheusfdosan.github.io/just-do-notes/)
 
 ## 🚀 Techs
 
